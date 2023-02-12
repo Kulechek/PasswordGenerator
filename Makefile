@@ -4,7 +4,7 @@ FLAGS = -Wall -Werror
 
 CFLAGS = -c -Wall -Werror
 
-OBJECTS = build/src/main.o build/src/alphabet_generation.o
+OBJECTS = build/src/main.o build/src/alphabet_generation.o build/src/generation_password.o
 
 OBJECTS_TEST = build/test/main.o build/test/tests.o build/src/alphabet_generation.o
 
@@ -32,6 +32,9 @@ build/src/main.o: src/main.cpp
 
 build/src/alphabet_generation.o: src/alphabet_generation.cpp
 	$(CXX) $(CFLAGS) src/alphabet_generation.cpp -o build/src/alphabet_generation.o
+
+build/src/generation_password.o: src/generation_password.cpp
+	$(CXX) $(CFLAGS) src/generation_password.cpp -o build/src/generation_password.o
 
 build:
 	mkdir -p build/src
