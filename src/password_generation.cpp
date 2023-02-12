@@ -1,14 +1,14 @@
 #include "password_generation.hpp"
 
-void print_passwords(string* passwords, int len_password, int numb_passwords) {
+void print_passwords(string* passwords, int numb_passwords) {
     for(int i = 0; i < numb_passwords; i++) {
         cout << passwords[i] << endl;
     }
 }
 
-int password_generation(string* passwords, int len_password, int numb_passwords,string* alphabet, int length_alphabet) {
+int password_generation(string* passwords, int len_password, int numb_passwords, string alphabet, int length_alphabet) {
 
-    if(passwords == nullptr) {
+    if(passwords == nullptr || len_password <= 0 || length_alphabet <= 0) {
         return 1;
     }
 
@@ -18,5 +18,6 @@ int password_generation(string* passwords, int len_password, int numb_passwords,
             passwords[i] += alphabet[rand() % length_alphabet];
         }
     }
+
     return 0;
 }
