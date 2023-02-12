@@ -2,6 +2,7 @@
 #include <string>
 
 #include "alphabet_generation.hpp"
+#include "password_generation.hpp"
 
 CTEST(ALPHABET_GENERATION, ALPHABET_FLAG)
 {
@@ -15,4 +16,13 @@ CTEST(ALPHABET_GENERATION, ALPHABET_FLAG)
 
     ASSERT_EQUAL(0, generation_alphabet(&alphabet, &len_alphabet, true, true, true, true));
     ASSERT_EQUAL(len_alphabet, 70);
+}
+
+CTEST(PASSWORD_GENERATION, EMPTY_POINTER_STRING) {
+    string *passwords = nullptr;
+    int len_password = 10;
+    int numb_passwords = 10;
+    string alphabet = "";
+    int length_alphabet = 10;
+    ASSERT_EQUAL(1, password_generation(&passwords, len_password, numb_passwords, &alphabet, length_alphabet));
 }
