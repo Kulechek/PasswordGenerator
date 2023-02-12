@@ -6,8 +6,6 @@
 #include <iostream>
 #include <string.h>
 
-
-
 using namespace std;
 
 int handling_main_argument(
