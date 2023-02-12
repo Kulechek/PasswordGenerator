@@ -44,4 +44,40 @@ int handling_main_argument(
     if (i == argc) {
         return 0;
     }
+
+    for (int j = i; j <= argc; j++)
+    {
+        if (!strcmp(argv[j], "-h")) {
+            cout << "Считывание опций выбранных пользователем при вызове генератора паролей." << endl
+                <<"pwgen[pw_length][num_pw][OPTION]"<< endl 
+                << "-0 - Использовать цифры в пароле."<< endl
+                << "-A - Использовать заглавные буквы в пароле." 
+                << "-a - Использовать прописные буквы в пароле."<<endl;
+            i++;
+        }
+
+        if (!strcmp(argv[j], "-0")) {
+            *digit_flag = false;
+            i++;
+        }
+
+        if (!strcmp(argv[j], "-A")) {
+            *large_symbol_flag = false;
+            i++;
+        }
+
+        if (!strcmp(argv[j], "-a")) {
+            *small_symbol_flag = false;     
+            i++;
+        }
+
+        if (i == argc) {
+            return 0;
+        }
+    }
+  
+    if (i == 1) {
+        return 1;
+    }
+    return 0;
 }
