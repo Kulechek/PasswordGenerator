@@ -22,24 +22,24 @@ int handling_main_argument(
     int i = 1;
     int temp = 0;
    
-    if (i == argc) {
-        return 0;
+    if (argc < 2) {
+        return 1;
     }
+
     temp = atoi(argv[i]);
     if (temp != 0) {
         *quantity_password = temp;
         i++;
+    } else {
+        return 1;
     }
 
-    if (i == argc) {
-        return 0;
-    }
     temp = atoi(argv[i]); 
-
     if (temp != 0) {
         *length_password = temp;
-        cout << *length_password;
         i++;
+    } else {
+        return 1;
     }
 
     if (i == argc) {
@@ -50,7 +50,9 @@ int handling_main_argument(
     {
         if (!strcmp(argv[j], "-h")) {
             cout << "Считывание опций выбранных пользователем при вызове генератора паролей." << endl
-                <<"pwgen[pw_length][num_pw][OPTION]"<< endl
+                <<"pwgen[num_pw][pw_length][OPTION]"<< endl
+                << "pw_length - Длина паролей. ОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР." << endl
+                << "num_pw - Количество паролей. ОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР." << endl
                 << "-s - Использовать специальные символы в пароле."<< endl 
                 << "-0 - Использовать цифры в пароле."<< endl
                 << "-A - Использовать заглавные буквы в пароле."<< endl

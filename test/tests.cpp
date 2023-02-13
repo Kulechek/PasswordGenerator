@@ -38,16 +38,11 @@ CTEST(PASSWORD_GENERATION, CORRECT_DATA) {
     ASSERT_EQUAL(0, password_generation(passwords, len_password, numb_passwords, alphabet, length_alphabet));
 }
 
-CTEST(HANDLING_MAIN_ARGUMENT, CHECK_VALUE_FLAG)
+CTEST(HANDLING_MAIN_ARGUMENT, CHECK_VALUE_FLAG_1)
 {
     int quantity_argument = 7;
-    char* argument = new char[quantity_argument];
-    argument[1] = '5';
-    argument[2] = '3';
-    argument[3] = '0';
-    argument[4] = '0';
-    argument[5] = '0';
-    argument[6] = '0';
+    const char *argument[] = {"", "5", "3", "0", "0", "0", "", ""};
+
     int quantity_password = 0;
     int length_password = 0;
     bool digit_flag = true;
@@ -56,7 +51,7 @@ CTEST(HANDLING_MAIN_ARGUMENT, CHECK_VALUE_FLAG)
     bool special_symbol_flag = true;
     handling_main_argument(
             quantity_argument,
-            &argument,
+            (char**)argument,
             &quantity_password,
             &length_password,
             &digit_flag,
@@ -69,12 +64,21 @@ CTEST(HANDLING_MAIN_ARGUMENT, CHECK_VALUE_FLAG)
     ASSERT_TRUE(small_symbol_flag);
     ASSERT_TRUE(large_symbol_flag);
     ASSERT_TRUE(special_symbol_flag);
+}
 
-    quantity_password = 0;
-    argument[1] = 'a';
+CTEST(HANDLING_MAIN_ARGUMENT, CHECK_VALUE_FLAG_2)
+{
+    int quantity_argument = 2;
+    const char *argument1[] = {"", "-a", "",""};
+    int quantity_password = 0;
+    int length_password = 0;
+    bool digit_flag = true;
+    bool small_symbol_flag = true;
+    bool large_symbol_flag = true;
+    bool special_symbol_flag = true;
     ASSERT_EQUAL(1, handling_main_argument(
             quantity_argument,
-            &argument,
+            (char**)argument1,
             &quantity_password,
             &length_password,
             &digit_flag,
@@ -83,15 +87,21 @@ CTEST(HANDLING_MAIN_ARGUMENT, CHECK_VALUE_FLAG)
             &special_symbol_flag));
     ASSERT_EQUAL(0, quantity_password);
 
-    argument[1] = '5';
-    argument[3] = '-a';
-    argument[4] = '-s';
-    argument[5] = '-0';
-    argument[6] = '-A';
+}
 
+CTEST(HANDLING_MAIN_ARGUMENT, CHECK_VALUE_FLAG_3)
+{
+    int quantity_argument = 7;
+    const char *argument2[] = {"", "5", "3", "-a", "-s", "-0", "-A", ""};
+    int quantity_password = 0;
+    int length_password = 0;
+    bool digit_flag = true;
+    bool small_symbol_flag = true;
+    bool large_symbol_flag = true;
+    bool special_symbol_flag = true;
     ASSERT_EQUAL(0, handling_main_argument(
             quantity_argument,
-            &argument,
+            (char**)argument2,
             &quantity_password,
             &length_password,
             &digit_flag,
@@ -103,3 +113,25 @@ CTEST(HANDLING_MAIN_ARGUMENT, CHECK_VALUE_FLAG)
     ASSERT_FALSE(large_symbol_flag);
     ASSERT_FALSE(special_symbol_flag);
 }
+
+CTEST(HANDLING_MAIN_ARGUMENT, CHECK_VALUE_FLAG_4)
+{
+    int quantity_argument = 7;
+    const char *argument2[] = {"", "5", "", "-a", "-s", "-0", "-A", ""};
+    int quantity_password = 0;
+    int length_password = 0;
+    bool digit_flag = true;
+    bool small_symbol_flag = true;
+    bool large_symbol_flag = true;
+    bool special_symbol_flag = true;
+    ASSERT_EQUAL(1, handling_main_argument(
+            quantity_argument,
+            (char**)argument2,
+            &quantity_password,
+            &length_password,
+            &digit_flag,
+            &small_symbol_flag,
+            &large_symbol_flag,
+            &special_symbol_flag));
+}
+
