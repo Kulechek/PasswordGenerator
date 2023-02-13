@@ -82,9 +82,24 @@ CTEST(HANDLING_MAIN_ARGUMENT, CHECK_VALUE_FLAG)
             &large_symbol_flag,
             &special_symbol_flag));
     ASSERT_EQUAL(0, quantity_password);
+
     argument[1] = '5';
-    argument[3] = 'd';
-    argument[4] = 's';
-    argument[5] = 'l';
-    argument[6] = 'q';
+    argument[3] = '-a';
+    argument[4] = '-s';
+    argument[5] = '-0';
+    argument[6] = '-A';
+
+    ASSERT_EQUAL(0, handling_main_argument(
+            quantity_argument,
+            &argument,
+            &quantity_password,
+            &length_password,
+            &digit_flag,
+            &small_symbol_flag,
+            &large_symbol_flag,
+            &special_symbol_flag));
+    ASSERT_FALSE(digit_flag);
+    ASSERT_FALSE(small_symbol_flag);
+    ASSERT_FALSE(large_symbol_flag);
+    ASSERT_FALSE(special_symbol_flag);
 }
