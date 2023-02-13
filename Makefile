@@ -4,9 +4,9 @@ FLAGS = -Wall -Werror
 
 CFLAGS = -c -Wall -Werror
 
-OBJECTS = build/src/main.o build/src/alphabet_generation.o build/src/password_generation.o
+OBJECTS = build/src/main.o build/src/alphabet_generation.o build/src/password_generation.o build/src/handling_main_argument.o
 
-OBJECTS_TEST = build/test/main.o build/test/tests.o build/src/alphabet_generation.o build/src/password_generation.o
+OBJECTS_TEST = build/test/main.o build/test/tests.o build/src/alphabet_generation.o build/src/password_generation.o build/src/handling_main_argument.o
 
 .PHONY: all bin build clean test
 
@@ -35,6 +35,9 @@ build/src/alphabet_generation.o: src/alphabet_generation.cpp
 
 build/src/password_generation.o: src/password_generation.cpp
 	$(CXX) $(CFLAGS) src/password_generation.cpp -o build/src/password_generation.o
+
+build/src/handling_main_argument.o: src/handling_main_argument.cpp
+	$(CXX) $(CFLAGS) src/handling_main_argument.cpp -o build/src/handling_main_argument.o
 
 build:
 	mkdir -p build/src
