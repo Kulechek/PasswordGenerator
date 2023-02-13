@@ -69,4 +69,22 @@ CTEST(HANDLING_MAIN_ARGUMENT, CHECK_VALUE_FLAG)
     ASSERT_TRUE(small_symbol_flag);
     ASSERT_TRUE(large_symbol_flag);
     ASSERT_TRUE(special_symbol_flag);
+
+    quantity_password = 0;
+    argument[1] = 'a';
+    ASSERT_EQUAL(1, handling_main_argument(
+            quantity_argument,
+            &argument,
+            &quantity_password,
+            &length_password,
+            &digit_flag,
+            &small_symbol_flag,
+            &large_symbol_flag,
+            &special_symbol_flag));
+    ASSERT_EQUAL(0, quantity_password);
+    argument[1] = '5';
+    argument[3] = 'd';
+    argument[4] = 's';
+    argument[5] = 'l';
+    argument[6] = 'q';
 }
