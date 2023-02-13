@@ -13,3 +13,4 @@ int handling_main_argument(
     bool* small_symbol_flag,
     bool* large_symbol_flag,
     bool* special_symbol_flag);
+    
