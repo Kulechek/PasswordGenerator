@@ -41,7 +41,7 @@ CTEST(PASSWORD_GENERATION, CORRECT_DATA) {
 CTEST(HANDLING_MAIN_ARGUMENT, CHECK_VALUE_FLAG_1)
 {
     int quantity_argument = 7;
-    const char *argument[] = {"", "5", "3", "0", "0", "0", "", ""};
+    const char *argument[] = {"", "5", "3", "", "", "", "", ""};
 
     int quantity_password = 0;
     int length_password = 0;
@@ -108,10 +108,10 @@ CTEST(HANDLING_MAIN_ARGUMENT, CHECK_VALUE_FLAG_3)
             &small_symbol_flag,
             &large_symbol_flag,
             &special_symbol_flag));
-    ASSERT_FALSE(digit_flag);
-    ASSERT_FALSE(small_symbol_flag);
-    ASSERT_FALSE(large_symbol_flag);
-    ASSERT_FALSE(special_symbol_flag);
+    ASSERT_TRUE(digit_flag);
+    ASSERT_TRUE(small_symbol_flag);
+    ASSERT_TRUE(large_symbol_flag);
+    ASSERT_TRUE(special_symbol_flag);
 }
 
 CTEST(HANDLING_MAIN_ARGUMENT, CHECK_VALUE_FLAG_4)
