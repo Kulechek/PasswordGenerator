@@ -36,5 +36,6 @@ int generation_alphabet(
         *length_alphabet = 0;
         return 1;
     }
+    
     return 0;
 }

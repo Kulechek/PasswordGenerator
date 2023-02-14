@@ -7,8 +7,8 @@ void print_passwords(string* passwords, int numb_passwords) {
 }
 
 int password_generation(string* passwords, int len_password, int numb_passwords, string alphabet, int length_alphabet) {
-
     if(passwords == nullptr || len_password <= 0 || length_alphabet <= 0) {
+        cout << len_password << " " << length_alphabet << endl;
         return 1;
     }
 
@@ -18,6 +18,8 @@ int password_generation(string* passwords, int len_password, int numb_passwords,
             passwords[i] += alphabet[rand() % length_alphabet];
         }
     }
+
+    print_passwords(passwords, numb_passwords);
 
     return 0;
 }

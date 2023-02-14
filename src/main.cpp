@@ -1,6 +1,6 @@
-#include "generation_alphabet.h"
-#include "generation_password.h"
-#include "handling_main_argument.h"
+#include "alphabet_generation.hpp"
+#include "password_generation.hpp"
+#include "handling_main_argument.hpp"
 
 #include <cstdio>
 #include <cstdlib>
@@ -12,17 +12,17 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    string* password = NULL;
+    string* password = nullptr;
     string alphabet;
-    int length_alphabet = 0;
+    int length_alphabet;
     int quantity_password = 10;
-    int length_password = 8;
-    bool digit_flag = true;
-    bool small_symbol_flag = true;
-    bool large_symbol_flag = true;
-    bool special_symbol_flag = true;
+    int length_password = 10;
+    bool digit_flag = false;
+    bool small_symbol_flag = false;
+    bool large_symbol_flag = false;
+    bool special_symbol_flag = false;
     
-    handling_main_argument(
+    int checkReturn = handling_main_argument(
         argc,
         argv,
         &quantity_password,
@@ -32,20 +32,36 @@ int main(int argc, char* argv[])
         &large_symbol_flag,
         &special_symbol_flag);
 
-    generation_alphabet(
+    if(checkReturn == 1) {
+        cout << "Error reading arguments. Run the program with the -h flag" << endl;            
+        return 0;
+    }
+    if(checkReturn == 2) {
+        return 0;
+    }
+
+    password = new string[quantity_password];
+
+    checkReturn = generation_alphabet(
         &alphabet,
         &length_alphabet,
         digit_flag,
         small_symbol_flag,
         large_symbol_flag,
         special_symbol_flag);
+    
+    if(checkReturn == 1) {
+        cout << "Error generation alphabet. Run the program with the -h flag" << endl;
+        return 0;
+    }
 
-    generation_password(
-        &password,
-        alphabet,
-        length_alphabet,
+
+    password_generation(
+        password,
+        length_password,
         quantity_password,
-        length_password);
+        alphabet,
+        length_alphabet);
 
     return 0;
 }
